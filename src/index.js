@@ -1,6 +1,6 @@
 import './style.css';
-import { getImageElementWhenLoaded } from "./components/getImageElementWhenLoaded";
-import { wait } from "./components/wait";
+import { getImageElementWhenLoaded } from './components/getImageElementWhenLoaded';
+import { wait } from './components/wait';
 
 const images = [
   'https://picsum.photos/5000?random=1',
@@ -26,23 +26,22 @@ images.forEach(function (image) {
 
     getImageElementWhenLoaded(selectedImage, imageWrapper)
       .then(function (image) {
-
         const currentImage = imageWrapper.querySelector('img');
 
         if (currentImage) {
           currentImage.classList.remove('loaded');
-          wait(700).then(function() {
+          wait(700).then(function () {
             currentImage.remove();
           });
-          wait(700).then(function() {
+          wait(700).then(function () {
             imageWrapper.append(image);
           });
-          wait(710).then(function() {
+          wait(710).then(function () {
             image.classList.add('loaded');
           });
         } else {
           imageWrapper.append(image);
-          wait(10).then(function() {
+          wait(10).then(function () {
             image.classList.add('loaded');
           });
         }

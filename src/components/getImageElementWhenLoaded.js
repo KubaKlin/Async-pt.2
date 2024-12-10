@@ -1,5 +1,4 @@
 export function getImageElementWhenLoaded(selectedImage) {
-
   const image = document.createElement('img');
   image.classList.add('image');
   image.src = selectedImage;
