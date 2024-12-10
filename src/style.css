@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  transition: 700ms ease;
+  max-width: 500px;
+  opacity: 0;
+}
+
+.image.loaded {
+  opacity: 1;
+}
