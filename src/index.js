@@ -1,5 +1,6 @@
 import './style.css';
 import { getImageElementWhenLoaded } from "./components/getImageElementWhenLoaded";
+import { wait } from "./components/wait";
 
 const images = [
   'https://picsum.photos/5000?random=1',
@@ -25,8 +26,12 @@ images.forEach(function (image) {
     getImageElementWhenLoaded(selectedImage)
       .then(function (image) {
         informationParagraph.innerText = '';
+        image.remove();
         informationParagraph.after(image);
-        image.classList.toggle('loaded');
+
+        wait(2000).then(function() {
+          image.classList.add('loaded');
+        });
       })
       .catch(function () {
         informationParagraph.innerText = 'loading error';
