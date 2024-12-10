@@ -1,4 +1,5 @@
 import './style.css';
+import { getImageElementWhenLoaded } from "./components/getImageElementWhenLoaded";
 
 const images = [
   'https://picsum.photos/5000?random=1',
@@ -21,22 +22,7 @@ images.forEach(function (image) {
     const selectedImage = images[buttonIndex];
     informationParagraph.innerText = 'loading...';
 
-    function getImageElementWhenLoaded() {
-      const image = document.createElement('img');
-      image.classList.add('image');
-      image.src = selectedImage;
-
-      return new Promise(function (resolve, reject) {
-        image.onload = function () {
-          resolve(image);
-        };
-        image.onerror = function () {
-          reject(image);
-        };
-      });
-    }
-
-    getImageElementWhenLoaded(image)
+    getImageElementWhenLoaded(selectedImage)
       .then(function (image) {
         informationParagraph.innerText = '';
         informationParagraph.after(image);
