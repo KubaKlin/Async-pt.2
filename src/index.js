@@ -1,6 +1,6 @@
 import './style.css';
-import { getImageElementWhenLoaded } from './components/getImageElementWhenLoaded';
-import { wait } from './components/wait';
+import { getImageElementWhenLoaded } from './utilities/getImageElementWhenLoaded';
+import { wait } from './utilities/wait';
 
 const images = [
   'https://picsum.photos/5000?random=1',
