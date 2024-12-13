@@ -12,10 +12,10 @@ const images = [
 const buttonsWrapper = document.querySelector('.buttons-wrapper');
 const informationParagraph = document.querySelector('.loading-info');
 
-images.forEach(function (image) {
+images.forEach(function (image, index) {
   const button = document.createElement('button');
   button.classList.add('button');
-  button.innerText = images.indexOf(image) + 1;
+  button.innerText = index + 1;
   buttonsWrapper.appendChild(button);
 
   button.addEventListener('click', function () {
@@ -27,25 +27,25 @@ images.forEach(function (image) {
     getImageElementWhenLoaded(selectedImage, imageWrapper)
       .then(function (image) {
         const currentImage = imageWrapper.querySelector('img');
+        informationParagraph.innerText = '';
 
-        if (currentImage) {
-          currentImage.classList.remove('loaded');
-          wait(700).then(function () {
-            currentImage.remove();
-          });
-          wait(700).then(function () {
-            imageWrapper.append(image);
-          });
-          wait(710).then(function () {
-            image.classList.add('loaded');
-          });
-        } else {
+        if (!currentImage) {
           imageWrapper.append(image);
-          wait(10).then(function () {
+          return wait(10).then(function () {
             image.classList.add('loaded');
           });
         }
-        informationParagraph.innerText = '';
+
+        currentImage.classList.remove('loaded');
+        return wait(700)
+          .then(function () {
+            currentImage.remove();
+            imageWrapper.append(image);
+            return wait(10);
+          })
+          .then(function () {
+            image.classList.add('loaded');
+          });
       })
       .catch(function () {
         informationParagraph.innerText = 'loading error';
