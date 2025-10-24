@@ -1,0 +1,20 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-info {
+  margin: 0;
+  height: 30px;
+  padding: 10px 0;
+}
+
+.image {
+  transition: 700ms ease;
+  max-width: 500px;
+  opacity: 0;
+}
+
+.image.loaded {
+  opacity: 1;
+}
